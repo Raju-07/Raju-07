@@ -1,0 +1,218 @@
+from tkinter import *
+from customtkinter import *
+set_appearance_mode("dark")
+set_default_color_theme("blue")
+app=CTk()
+app.title("Form for Data")
+app.geometry("787x456")
+
+Name_var=StringVar(value="Name")
+Age_var=StringVar(value="Age")
+Gender_var=StringVar(value="Gender")
+
+
+def generate_result():
+    result_label_var.set(value=(f"Name:- {name_entry.get()}\n Age:-{age_entry.get()}\nMale:-{str(gender_choice_var.get())}\nOccupation:-{combobox_var.get()}"))
+    text1=""
+    text2=""
+    text3=""
+    if python_check_var.get()=="on":
+        text1="Python"
+    if Java_check_var.get()=="on":
+        text2="Java"
+    if c_check_var.get()=="on":
+        text3="C++"
+    result=text1+"\n " +text2+"\n "+text3
+    result_fl_label_var.set(f"Favourite Language:- {result}")
+
+    
+
+name_label=CTkLabel(master=app,
+                    textvariable=Name_var,
+                    font=("Bell MT",20),
+                    text_color="White"
+                    )
+name_label.place(relx=0.04,rely=0.19)
+name_entry=CTkEntry(master=app,
+                    corner_radius=8,
+                    border_color="white",
+                    border_width=1,
+                    placeholder_text_color="white",
+                    fg_color="transparent",
+                    width=200,
+                    font=("Bell MT",20,"bold"))
+name_entry.place(relx=0.20,rely=0.19)
+
+age_label=CTkLabel(master=app,
+                   textvariable=Age_var,
+                   font=("Bell MT",20),
+                   text_color="White"
+                   )
+age_label.place(relx=0.04,rely=0.28)
+age_entry=CTkEntry(master=app,
+                    corner_radius=8,
+                    border_color="white",
+                    border_width=1,
+                    placeholder_text_color="white",
+                    fg_color="transparent",
+                    width=200,
+                    font=("Bell MT",20,"bold"))
+age_entry.place(relx=0.20,rely=0.28)
+
+gender_label=CTkLabel(master=app,textvariable=Gender_var,font=("Bell MT",20,),text_color="white")
+gender_label.place(relx=0.04,rely=0.40)
+
+
+gender_choice_var=StringVar(value="")
+gender_male_rb=CTkRadioButton(master=app,
+                        value="Male",
+                        variable=gender_choice_var,
+                        text="Male",
+                        font=("Bell MT",20),
+                        corner_radius=12,
+                        border_color="white",
+                        border_width_unchecked=2)
+gender_male_rb.place(relx=0.20,rely=0.40)
+
+gender_female_rb=CTkRadioButton(master=app,
+                        value="Female",
+                        variable=gender_choice_var,
+                        text="Female",
+                        corner_radius=12,
+                        border_color="white",
+                        font=("Bell MT",20),
+                        border_width_unchecked=2)
+gender_female_rb.place(relx=0.30,rely=0.40)
+
+gender_pnts_rb=CTkRadioButton(master=app,
+                              font=("Bell MT",20),
+                              text="Prefer not to say",
+                              value="Prefer not to say",
+                              variable=gender_choice_var,
+                              corner_radius=12,
+                              border_color="white",
+                              border_width_unchecked=2)                             
+gender_pnts_rb.place(relx=0.45,rely=0.4)
+
+fb_language_label=CTkLabel(master=app,
+                           text="Favourite \nLanguage",
+                           text_color="white",
+                           font=("Bell MT",20),
+                           )
+fb_language_label.place(relx=0.04,rely=0.48)
+
+python_check_var=StringVar(value="Python")
+python_checkbox=CTkCheckBox(master=app,
+                            corner_radius=8,
+                            offvalue="off",
+                            onvalue="on",
+                            variable=python_check_var,
+                            text="Python",
+                            text_color="White",
+                            font=("Bell MT",20),
+                            border_color="white",
+                            border_width=2
+                            )
+python_checkbox.place(relx=0.2,rely=0.48)
+
+
+Java_check_var=StringVar(value="Java")
+Java_checkbox=CTkCheckBox(master=app,
+                            corner_radius=8,
+                            offvalue="off",
+                            onvalue="on",
+                            variable=Java_check_var,
+                            text="Java",
+                            text_color="White",
+                            font=("Bell MT",20),
+                            border_color="white",
+                            border_width=2
+                            )
+Java_checkbox.place(relx=0.35,rely=0.48)
+
+c_check_var=StringVar(value="C++")
+c_checkbox=CTkCheckBox(master=app,
+                            corner_radius=8,
+                            offvalue="off",
+                            onvalue="on",
+                            variable=c_check_var,
+                            text="C++",
+                            text_color="White",
+                            font=("Bell MT",20),
+                            border_color="white",
+                            border_width=2
+                            )
+c_checkbox.place(relx=0.45,rely=0.48)
+
+
+work_label=CTkLabel(master=app,
+                    text="Occupation",
+                    font=("Bell MT",20),
+                    text_color="white"
+                    )
+work_label.place(relx=0.04,rely=0.65)
+
+
+combobox_var=StringVar(value="")
+occ_combobox=CTkComboBox(master=app,
+                        width=200,
+                        border_color="white",
+                        border_width=2,
+                        values=["Student","Teacher","Software Engineer","House wife","Singer"],
+                        text_color="white",
+                        bg_color="transparent",
+                        variable=combobox_var,
+                        font=("Bell MT",20),
+                        )
+occ_combobox.place(relx=0.2,rely=0.65)
+
+
+generate_button=CTkButton(master=app,
+                          text="Generate result",
+                          text_color="white",
+                          width=200,
+                          corner_radius=9,
+                          command=generate_result,
+                          font=("Bell MT",20))
+generate_button.place(relx=0.2,rely=0.78)
+
+result_frame=CTkFrame(master=app,
+                      width=220,
+                      height=350,
+                      border_color="white",
+                      border_width=1,
+                      corner_radius=9,
+                      bg_color="transparent"
+                      )
+result_frame.place(relx=0.7,rely=0.1)
+
+result_frame_header=CTkLabel(master=result_frame,
+                            text="Your Result",
+                            text_color="white",
+                            font=("Bell MT",30),
+                            fg_color="Green",
+                            corner_radius=8
+                            )
+result_frame_header.place(relx=0.5,rely=0.1,anchor=CENTER)
+
+result_label_var=StringVar(value="")
+result_label=CTkLabel(master=result_frame,
+                      textvariable=result_label_var,
+                      font=("Bell MT",15),
+                      text_color="white"
+                      )
+result_label.place(relx=0.1,rely=0.3)
+
+result_fl_label_var=StringVar(value="")
+result_fl_label=CTkLabel(master=result_frame,
+                        textvariable=result_fl_label_var,
+                        text_color="white",
+                        font=("Bell MT",15)
+                        )
+result_fl_label.place(relx=0.1,rely=0.6)
+
+
+
+
+app.mainloop()
+
