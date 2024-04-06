@@ -1,0 +1,286 @@
+from customtkinter import *
+
+#app appearance
+set_appearance_mode("dark")
+set_default_color_theme("green")
+
+#app dimension
+app=CTk()
+app.title("PDF Tool")
+app.geometry("454x454")
+
+#Heading of the app
+heading_level=CTkLabel(master=app,
+                       text="PDF TOOL",
+                       text_color="white",
+                       corner_radius=9,
+                       font=("Times New Roman",40,"bold"),
+                       )
+heading_level.pack(padx=10,pady=10)
+
+#Frame for Label
+interface_frame=CTkFrame(master=app,
+                         height=250,
+                         width=280,
+                         bg_color="transparent",
+                         border_color="white",
+                         border_width=1)
+interface_frame.pack(padx=10,pady=10)
+label_var=StringVar(value="Which operation do you want to perform")
+label=CTkLabel(master=interface_frame,
+               textvariable=label_var,
+               font=("Times New Roman",20),
+               text_color="white",
+               corner_radius=9,
+               compound="center"
+               )
+label.pack(padx=10,pady=40,anchor=W)
+
+
+#Function for Encryption of the PDF
+def set_password_pdf():
+    remove_password_op.destroy()
+    label_var.set('''PDF encryption secures files by
+    encoding their content,preventing 
+    unauthorized access. It uses algorithms to scramble
+    data and requires a decryption key to restore it.
+    Common methords include password based
+    encryption and certificate-based encryption,
+    ensuring confidentiality and intergrity of sensitive
+    PDF documents.''')
+    app.geometry("854x650")
+    interface_frame.pack_configure(padx=20,pady=30,side=LEFT)
+   
+
+#Final Process for Encryption
+
+    def Encrypt_pdf():
+        try: 
+            
+            import pikepdf
+
+            old_pdf=pikepdf.Pdf.open(f"{file_path.get()}")
+            no_extr=pikepdf.Permissions(extract=False)
+            old_pdf.save(f"{file_name.get()}" + ".pdf",
+             encryption=pikepdf.Encryption(user=(password.get()),
+                                           owner="Raju Yadav",
+                                           allow=no_extr))
+            
+            if del_previous_file_checkbox.get()=="off":
+                os.remove(f"{file_path.get()}")
+
+            dis_label_var.set(value="PDF is Locked Successfully!!")
+            set_pass_frame.configure(border_color="green")
+            display_Label.configure(text_color="green",fg_color="white")
+        except:
+            dis_label_var.set(value="Something went wrong ")
+            set_pass_frame.configure(border_color="red")
+    set_pass_frame=CTkFrame(master=app,
+                            height=200,
+                            width=500,
+                            bg_color="transparent",
+                            border_width=1,
+                            border_color="white")
+    set_pass_frame.pack(padx=10,pady=20)
+
+    dis_label_var=StringVar(value="Hii There!")
+    display_Label=CTkLabel(master=set_pass_frame,
+                           textvariable=dis_label_var,
+                           font=("Times New Roman",17,"italic"),
+                           corner_radius=8,
+                           fg_color="yellow",
+                           text_color="black")
+    display_Label.pack(padx=10,pady=8,anchor=W)
+
+    file_path_label=CTkLabel(master=set_pass_frame,
+                             text="Please Enter the path of PDF",
+                             text_color="white",
+                             font=("Helvatica",15))
+    file_path_label.pack(padx=20,pady=10)
+
+    file_path=CTkEntry(master=set_pass_frame,
+                       bg_color="transparent",
+                       textvariable=StringVar(),
+                       text_color="white",
+                       corner_radius=8,
+                       )
+    file_path.pack(padx=10,pady=11)
+    
+    new_file_name_label=CTkLabel(master=set_pass_frame,
+                           text="New Name of PDF(.pdf)",
+                           text_color="white",
+                           font=("Helvatica",15))
+    new_file_name_label.pack(padx=20,pady=12)
+
+    file_name=CTkEntry(master=set_pass_frame,
+                       bg_color="transparent",
+                       corner_radius=8,
+                       text_color="white",
+                       textvariable=StringVar())
+    file_name.pack(padx=10,pady=13)
+    password_label=CTkLabel(master=set_pass_frame,
+                             text="Please Enter the Password",
+                             text_color="white",
+                             font=("Helvatica",15))
+    password_label.pack(padx=20,pady=14)
+
+    password=CTkEntry(master=set_pass_frame,
+                       bg_color="transparent",
+                       text_color="white",
+                       corner_radius=8,textvariable=StringVar())
+    password.pack(padx=10,pady=15)
+    
+    del_previous_file_checkbox=CTkCheckBox(master=set_pass_frame,
+                                           text="Do you want to Keep Unlock pdf also ?",
+                                           text_color="white",
+                                           font=("Times New Roman",17),
+                                           corner_radius=6,
+                                           checkmark_color="white",
+                                           onvalue="on",
+                                           offvalue="off")
+    del_previous_file_checkbox.pack(padx=10,pady=16)
+
+
+    set_pass=CTkButton(master=set_pass_frame,
+                       text="Lock Now",
+                       text_color="white",
+                       command=Encrypt_pdf)
+    set_pass.pack(pady=18,anchor=CENTER)
+
+def remove_password_pdf():
+    set_password_op.destroy()
+    label_var.set('''PDF Decryption reverses encryption to restore
+    file access. Autonorized users enter a decryption
+    key (Password or certificate) to Unlock and view
+    the content. Algorithms decode the encrypted data,
+making it readable.
+                  
+    Decryption is crucial for accessing protected PDFs 
+    while maintaining security measures against 
+unauthorized access.
+    ''')
+    app.geometry("854x650")
+    interface_frame.pack_configure(padx=20,pady=30,side=LEFT)
+   
+
+#Final Process for Decryption
+
+    def Decrypt_pdf():
+        try:
+            import pikepdf
+
+            old_file1=pikepdf.open(f"{file_path1.get()}",
+                               password=f"{password1.get()}")
+            old_file1.save(f"{file_name1.get()}"+".pdf")
+            if del_previous_file_checkbox1.get()=="off":
+                import os
+                os.remove(f"{file_path1.get()}")
+                
+            set_pass_frame1.configure(border_color="green")
+            dis_label_var1.set("Password Removed Successfully!")
+            display_Label1.configure(text_color="green",fg_color="white")
+            set_pass_frame1.configure(border_color="green")
+        except:
+            dis_label_var1.set("Please Enter the correct password \nof PDF")
+            set_pass_frame1.configure(border_color="red")
+            display_Label1.configure(text_color="red")
+    set_pass_frame1=CTkFrame(master=app,
+                            height=200,
+                            width=500,
+                            bg_color="transparent",
+                            border_width=1,
+                            border_color="white")
+    set_pass_frame1.pack(padx=10,pady=20)
+
+    dis_label_var1=StringVar(value="Hii There!")
+    display_Label1=CTkLabel(master=set_pass_frame1,
+                           textvariable=dis_label_var1,
+                           font=("Times New Roman",17,"italic"),
+                           corner_radius=8,
+                           fg_color="yellow",
+                           text_color="black")
+    display_Label1.pack(padx=10,pady=8,anchor=W)
+
+    file_path_label1=CTkLabel(master=set_pass_frame1,
+                             text="Please Enter the path of PDF",
+                             text_color="white",
+                             font=("Helvatica",15))
+    file_path_label1.pack(padx=20,pady=10)
+
+    file_path1=CTkEntry(master=set_pass_frame1,
+                       bg_color="transparent",
+                       textvariable=StringVar(),
+                       text_color="white",
+                       corner_radius=8,
+                       )
+    file_path1.pack(padx=10,pady=11)
+    
+    new_file_name_label1=CTkLabel(master=set_pass_frame1,
+                           text="New Name of PDF",
+                           text_color="white",
+                           font=("Helvatica",15))
+    new_file_name_label1.pack(padx=20,pady=12)
+
+    file_name1=CTkEntry(master=set_pass_frame1,
+                       bg_color="transparent",
+                       corner_radius=8,
+                       text_color="white",
+                       textvariable=StringVar())
+    file_name1.pack(padx=10,pady=13)
+    password_label1=CTkLabel(master=set_pass_frame1,
+                             text="Enter the correct password of PDF",
+                             text_color="white",
+                             font=("Helvatica",15))
+    password_label1.pack(padx=20,pady=14)
+
+    password1=CTkEntry(master=set_pass_frame1,
+                       bg_color="transparent",
+                       text_color="white",
+                       corner_radius=8,textvariable=StringVar())
+    password1.pack(padx=10,pady=15)
+
+    del_previous_file_checkbox1=CTkCheckBox(master=set_pass_frame1,
+                                           text="Do you want to Keep lock pdf also ?",
+                                           text_color="white",
+                                           font=("Times New Roman",17),
+                                           corner_radius=6,
+                                           checkmark_color="white",
+                                           onvalue="on",
+                                           offvalue="off")
+    del_previous_file_checkbox1.pack(padx=10,pady=16)
+
+
+    set_pass1=CTkButton(master=set_pass_frame1,
+                       text="Unlock Now",
+                       text_color="white",
+                       command=Decrypt_pdf)
+    set_pass1.pack(pady=18,anchor=CENTER)
+    
+
+
+set_password_op=CTkButton(master=interface_frame,
+                          text="Set Password",
+                          text_color="white",
+                          corner_radius=6,
+                          font=("Times New Roman",15),
+                          command=set_password_pdf)
+set_password_op.pack(padx=40,pady=90,side=LEFT,anchor=NW)
+
+remove_password_op=CTkButton(master=interface_frame,
+                          text="Remove Password",
+                          text_color="white",
+                          corner_radius=6,
+                          font=("Times New Roman",15),
+                          command=remove_password_pdf)
+remove_password_op.pack(padx=40,pady=90,side=LEFT,anchor=NW)
+
+exit_button=CTkButton(master=app,
+                      text="Exit",
+                      text_color="white",
+                      command=exit)
+exit_button.pack(side=BOTTOM,padx=10,pady=10,anchor=CENTER)
+
+
+
+app.mainloop()
+ 
