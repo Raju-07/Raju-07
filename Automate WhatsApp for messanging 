@@ -1,0 +1,25 @@
+#Automatic sending messing
+#Required Modules
+import pyautogui as at
+from time import *
+sleep(2)
+#working
+at.press("win")
+sleep(1)
+at.write("whatsapp")
+sleep(2)
+at.press('enter')
+sleep(2)
+
+at.write("sis")#Enter Contact Name here
+sleep(2)
+at.moveTo(155,192,1) #Enter the x and y coordinate according to your screen resolution
+sleep(0.5)
+at.leftClick()
+sleep(3)
+for send_message in range(10):
+    
+    text='Hey whatsUp....!' #Type your message Here
+    at.write(text)
+    sleep(1)
+    at.press("enter")
