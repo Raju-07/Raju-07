@@ -1,0 +1,1053 @@
+from customtkinter import *
+from datetime import *
+import time as tm
+from tkcalendar import DateEntry 
+from tkinter import messagebox as ms
+import pymysql as sq
+from datetime import *
+set_appearance_mode("dark")
+set_default_color_theme("blue")
+
+app=CTk()
+app.geometry("860x580")
+app.resizable(False,False)
+app.title("Student Management System")
+
+#Function 1
+def show_course():
+    #Creating new window for showing Information
+    window1=CTk()
+    window1.geometry("600x400")
+    window1.resizable(False,False)
+    window1.title("Coding with Dost")
+    #Window Header
+    course_header=CTkLabel(master=window1,
+                           height=100,
+                           width=150,
+                          text="available Courses",                        text_color="white",
+font=("Bell MT",40,"bold"),
+anchor=CENTER)
+    course_header.place(relx=0.5,rely=0.1,anchor=CENTER)
+
+    #Window1 Label
+    window1_label=CTkLabel(master=window1,
+                       text="Course",
+                       text_color="#08B0BA",
+                       height=29,
+                       width=20,
+                       font=("Bell MT",15,"bold"))
+    window1_label.place(relx=0.1,rely=0.15)
+
+    window1_label=CTkLabel(master=window1,
+                       text="Duration",
+                       text_color="#08B0BA",
+                       height=29,
+                       width=20,
+                       font=("Bell MT",15,"bold"))
+    window1_label.place(relx=0.3,rely=0.15)
+
+    window1_label=CTkLabel(master=window1,
+                       text="Fees(per Year)",
+                       text_color="#08B0BA",
+                       height=29,
+                       width=20,
+                       font=("Bell MT",15,"bold"))
+    window1_label.place(relx=0.6,rely=0.15)
+
+    #Available Course data
+    bca_label=CTkLabel(master=window1,
+                       text="""BCA                       3 Years                                 ₹ 70500/-
+BBA                       3 Years                                 ₹ 55500/-
+B-TECH                3 Years                                 ₹ 90500/-
+M-TECH                2 Years                                ₹ 90500/-
+BA                         3 Years                                 ₹ 35500/-
+BSc                        3 Years                                 ₹ 45500/-
+LLB                       3 Years                                 ₹ 70500/-
+MLB                      2 Years                                 ₹ 80500/-
+BN                         3 Years                                 ₹ 90550/- """,
+                       text_color="#F4F6F6",
+                       height=29,
+                       width=20,
+                       font=("Bell MT",17))
+    bca_label.place(relx=0.1,rely=0.2)
+    # Button for exiting from window1
+    ok_button=CTkButton(master=window1,
+                        text="OK",
+                        fg_color="green",
+                        text_color="Black",
+                        font=("Bell MT",20),
+                        command=window1.destroy)
+    ok_button.place(relx=0.5,rely=0.8,anchor=CENTER)
+    window1.mainloop()
+
+#Function 2
+def new_addmission():
+    # Creating New window for Admission form
+    window2 = CTk()
+    window2.geometry("800x600")
+    window2.title("Admission Form")
+    window2.resizable(False, False)
+    dt=datetime.now()
+    window2.config(bg="#21252B")
+    
+
+    #fields for data entry in admission form
+    con=sq.Connection(host="localhost",user="root",password="",database="coding_with_dost")
+    mycur=con.cursor()
+    course_list=["BCA","BBA","B_TECH","M_TECH","BSc","NB","BA","LLB","MLB"]
+    try:
+        for v in course_list:
+            mycur.execute(f"create table if not exists {v}(Roll_no INT primary key auto_increment,Name VARCHAR(30),Date_of_Birth VARCHAR(10),Father_Name VARCHAR(40),Father_Qualification VARCHAR(30),Father_Occupation VARCHAR(40),Phone VARCHAR(14),Email VARCHAR(60),Address VARCHAR(200),Religion VARCHAR(20),Caste VARCHAR(30),Date VARCHAR(20),Nothing VARCHAR(2))")
+    except:
+        print("Something went wrong in the lodic of creating fields for new addmission form....")
+
+    # Function to be execute when data is completely filled
+    def register_data():
+        if len(name_entry.get()) and len(dob_entry.get()) and len(address_entry.get()) and len(phone_number_entry.get()) and len(email_entry.get()) and len(caste_entry.get()) >2:
+            conn=sq.Connection(host="localhost",
+                        user="root",
+                        password="",
+                        database="coding_with_dost")
+            mycursor=conn.cursor()
+            table_name=course_combobox.get().lower()
+            try:
+                sql=f"insert into {table_name}(Name,Date_of_Birth,Father_Name,Father_Qualification,Father_Occupation,Phone,Email,Address,Religion,Caste,Date,Nothing) value(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                values=(f"{name_entry.get()}",f"{dob_data}",f"{father_name_entry.get()}",f"{qualification_combbobox.get()}",f"{father_occupation_combobox.get()}",f"{phone_number_entry.get()}",f"{email_entry.get()}",f"{address_entry.get()}",f"{religion_combobox.get()}",f"{caste_entry.get()}",f"{time_status1.cget('text')}","")
+                mycursor.execute(sql,values)
+                conn.commit()
+                admission_status.configure(text="You're registered Sucessfully",text_color="green")
+            except:
+                admission_status.configure(text="Error: Check your query code carefully",text_color="yellow")
+        else:
+            admission_status.configure(text="All fields must be filled..",text_color="red") 
+    # Header 1 (institute Name)
+    window2_header=CTkLabel(master=window2,
+                            text="Coding with Dost",
+                            text_color="#A09F3A",
+                            anchor=CENTER,
+                            font=("Cooper Black",22))
+    window2_header.place(relx=0.5,rely=0.04,anchor=CENTER)
+    # Header 2 (Admision form)
+    admission_header=CTkLabel(master=window2,
+                              height=50,
+                              width=100,
+                              text="Admission Form",
+                              text_color="white",
+                              font=("Cooper Black",40))
+    admission_header.place(relx=0.5,rely=0.1,anchor=CENTER)
+    # Current Time
+    time_status=CTkLabel(master=window2,
+                         text="Date",
+                         text_color="white",
+                         anchor=CENTER,
+                         font=("Cooper Black",22))
+    time_status.place(relx=0.9,rely=0.1,anchor=CENTER)
+    # Current Time
+    time_status1=CTkLabel(master=window2,
+                         text=dt.strftime("%d/%m/%Y"),
+                         text_color="white",
+                         anchor=CENTER,
+                         font=("Cooper Black",22))
+    time_status1.place(relx=0.9,rely=0.15,anchor=CENTER)
+
+    #Name Label
+    name=CTkLabel(master=window2,
+                  text="Name:",
+                  text_color="white",
+                  font=("Cooper Black",15))
+    name.place(relx=0.05,rely=0.2)
+
+    name_entry=CTkEntry(master=window2,
+                        height=30,
+                        width=180,
+                        font=("Arial",17),
+                        placeholder_text="Your Name",
+                        placeholder_text_color=["black","white"],
+                        text_color="white")
+    name_entry.place(relx=0.2,rely=0.2)
+#Date of Birth
+    dob=CTkLabel(master=window2,
+                 text="DOB:",
+                 text_color="white",
+                 font=("Cooper Black",15))
+    dob.place(relx=0.6,rely=0.2)
+    # Calender for effecient data entry
+    dob_entry=DateEntry(master=window2,selectmode='day')
+    dob_entry.place(relx=0.68,rely=0.2)
+
+    #Fetching date of Birth
+    def update_dob():
+        global dob_data
+        dt=dob_entry.get_date()
+        dob_data=dt.strftime("%d/%m/%Y")
+        
+
+    fetch_button=CTkButton(master=window2,
+                           height=22,
+                           width=60,
+                           text="Fetch",
+                           text_color="white",
+                           corner_radius=6,
+                           hover_color="green",
+                           command=update_dob)
+    fetch_button.place(relx=0.81,rely=0.2)
+    #Father Name
+    father_name=CTkLabel(master=window2,
+                         text="Father Name:",
+                         text_color="white",
+                         font=("Cooper Black",15))
+    father_name.place(relx=0.05,rely=0.28)
+
+    father_name_entry=CTkEntry(master=window2,
+                               height=30,
+                               width=180,
+                               placeholder_text="Father Name",
+                               text_color="white",
+                               placeholder_text_color="white",
+                               font=("Arial",17))
+    father_name_entry.place(relx=0.2,rely=0.28)
+
+    #Qualification of father
+    qualification_of_father=CTkLabel(master=window2,
+                                     text="Qualification",
+                                     text_color="white",
+                                     font=("Cooper Black",15))
+    qualification_of_father.place(relx=0.6,rely=0.28)
+
+    qualification_combbobox=CTkComboBox(master=window2,
+                                        width=150,
+                                        height=30,
+                                        corner_radius=5,
+                                        bg_color="black",
+                                        text_color="white",
+                                        border_color="white",
+                                        state="readonly",
+                                        values=["Matrics","5th pass","8th pass","Illitrate","Graduate","Diploma","Masters"],
+                                        border_width=1,
+                                        button_color="skyblue",
+                                        button_hover_color="green",
+                                        dropdown_fg_color="#4A8677",
+                                        dropdown_text_color="white")
+    qualification_combbobox.set("Matrics")
+    qualification_combbobox.place(relx=0.73,rely=0.28)
+
+    #father occupation
+    father_occupation=CTkLabel(master=window2,
+                               text="Occupation:",
+                               text_color="white",
+                               font=("Cooper Black",16))
+    father_occupation.place(relx=0.05,rely=0.36)
+    father_occupation_combobox=CTkComboBox(master=window2,
+                                           width=150,
+                                           height=30,
+                                           corner_radius=6,
+                                           bg_color="black",
+                                           text_color="white",
+                                           border_color="white",
+                                           border_width=1,
+                                           state="readonly",
+                                           values = [
+    "Teacher", "Doctor", "Engineer","Private sector", "Lawyer", "Accountant", "Nurse",
+    "Police Officer", "Firefighter", "Businessperson", "Farmer", "Carpenter",
+    "Plumber", "Electrician", "Mechanic", "Driver", "Chef", "Software Developer",
+    "Scientist", "Artist", "Writer", "Musician", "Architect", "Salesperson",
+    "Real Estate Agent", "Pilot", "Banker", "Pharmacist", "Dentist", "Veterinarian",
+    "Military Personnel", "Social Worker", "Librarian", "Journalist", "Photographer",
+    "Marketing Manager", "Construction Worker", "Cleaner", "Security Guard", "Designer",
+    "Consultant"],
+    button_color="skyblue",
+    button_hover_color="green",
+    dropdown_fg_color="#4A8677",
+    dropdown_text_color="white")
+    father_occupation_combobox.set("Private Sector")
+    father_occupation_combobox.place(relx=0.2,rely=0.36)
+
+    #Address of student
+    address_label=CTkLabel(master=window2,
+                           text="Address:",
+                           text_color="white",
+                           font=("Cooper Black",15))
+    address_label.place(relx=0.6,rely=0.36)
+
+    address_entry=CTkEntry(master=window2,
+                           width=200,
+                           height=30,
+                           corner_radius=6,
+                           placeholder_text="Address",
+                           placeholder_text_color=["black","white"],
+                           font=("Arial",17))
+    address_entry.place(relx=0.7,rely=0.36)
+
+    #Student contact
+    phoneno_label=CTkLabel(master=window2,
+                           text="phone No:",
+                           text_color="white",
+                           font=("Cooper Black",15))
+    phoneno_label.place(relx=0.05,rely=0.44)
+    
+    phone_number_entry=CTkEntry(master=window2,
+                                height=30,
+                                width=160,
+                                text_color="white",
+                                placeholder_text="Phone NO",
+                                placeholder_text_color="white")
+    phone_number_entry.place(relx=0.2,rely=0.44)
+
+    #Student Email
+    email_label=CTkLabel(master=window2,
+                         text="E-mail:",
+                         text_color="white",
+                         font=("Cooper Black",15))
+    email_label.place(relx=0.6,rely=0.44)
+
+    email_entry=CTkEntry(master=window2,
+                         height=30,
+                         width=160,
+                         text_color="white",
+                         placeholder_text="E-mail",
+                         placeholder_text_color="white")
+    email_entry.place(relx=0.7,rely=0.44)
+
+    # Religions
+    religion_label=CTkLabel(master=window2,
+                            text="Religion:",
+                            text_color="white",
+                            font=("Cooper Black",15))
+    religion_label.place(relx=0.05,rely=0.54)
+
+    religion_combobox=CTkComboBox(master=window2,
+                                  height=30,
+                                  width=160,
+                                  corner_radius=6,
+                                  border_color="white",
+                                  border_width=1,
+                                  button_color="skyblue",
+                                  button_hover_color="green",
+                                  dropdown_fg_color="#4A8677",
+                                  dropdown_text_color="white",
+                                  font=("Arial",17),
+                                  state="readonly",
+                                  values = [
+    "Hinduism", "Christianity", "Islam", "Buddhism", "Sikhism", "Judaism", 
+    "Jainism", "Bahá'í Faith", "Shinto", "Taoism", "Confucianism", 
+    "Zoroastrianism", "Rastafarianism", "Unitarian Universalism", "Paganism", 
+    "Scientology", "Wicca", "Bahá'í", "Shamanism", "Druidism"
+])
+    religion_combobox.set("Hinduism")
+    religion_combobox.place(relx=0.2,rely=0.54)
+# Caste if Student
+    caste_label=CTkLabel(master=window2,
+                         text="Caste:",
+                         text_color="white",
+                         font=("Cooper Black",15))
+    caste_label.place(relx=0.6,rely=0.54)
+
+    caste_entry=CTkEntry(master=window2,
+                         height=30,
+                         width=150,
+                         placeholder_text="Caste",
+                         placeholder_text_color="white",
+                         text_color="white")
+    caste_entry.place(relx=0.7,rely=0.54)
+
+    #Course Persue
+    course_label=CTkLabel(master=window2,
+                          text="which Course do you want:",
+                          text_color="white",
+                          font=("Cooper Black",15))
+    course_label.place(relx=0.05,rely=0.65)
+
+    course_combobox=CTkComboBox(master=window2,
+                                height=30,
+                                width=150,
+                                text_color="white",
+                                dropdown_fg_color="#4A8677",
+                                button_color="skyblue",
+                                dropdown_hover_color="green",
+                                dropdown_text_color="white",
+                                bg_color="black",
+                                corner_radius=6,
+                                border_color="white",
+                                border_width=1,
+                                state="readonly",
+                                values=["BCA","BBA","B_TECH","M_TECH","BSc","NB","BA","LLB","MLB"])
+    course_combobox.set("BCA")
+    course_combobox.place(relx=0.4,rely=0.65)
+# Status of the Admission form
+    admission_status=CTkLabel(master=window2,
+                              text="",
+                              text_color="white",
+                              font=("Cooper Black",25))
+    admission_status.place(relx=0.5,rely=0.8,anchor=CENTER)
+    submit_button=CTkButton(master=window2,
+                            text="Register",
+                            text_color="white",
+                            font=("Arial",23),
+                            hover_color="green",
+                            corner_radius=8,
+                            command=register_data)
+    submit_button.place(relx=0.4,rely=0.9)
+    exit_button=CTkButton(master=window2,
+                          text="Exit",
+                          text_color="white",
+                          font=("Arial",22),
+                          hover_color="green",
+                          corner_radius=9,
+                          command=window2.destroy)
+    exit_button.place(relx=0.7,rely=0.9)
+    window2.mainloop()
+    
+#Function 3 
+#showing records
+def show_record():
+    #Window3 For showing results
+    window3=CTk()
+    window3.geometry("900x800")
+    window3.title("Record Section")
+    data_text=""
+    # window 3 Header
+    w3_header_label=CTkLabel(master=window3,
+                             text="Record",
+                             height=50,
+                             width=300,
+                             font=("Times New Romans",40),
+                             anchor=CENTER,
+                             text_color="white",
+                             corner_radius=8)
+    w3_header_label.place(relx=0.5,rely=0.1,anchor=CENTER)
+
+    #creating textbox for Showing Result
+    w3_result_textbox=CTkTextbox(master=window3,
+                              height=700,
+                              width=880,
+                              corner_radius=9,
+                              border_width=1,
+                              border_color="white",
+                              fg_color="black",
+                              text_color="white",
+                              scrollbar_button_color="white",
+                              scrollbar_button_hover_color="skyblue",
+                              font=("Times New Romans",17),
+                              activate_scrollbars=True)
+    w3_result_textbox.place(relx=0.01,rely=0.18)
+
+    exit_button_for_window_3=CTkButton(master=window3,
+                                       text="OK",
+                                       text_color="white",
+                                       height=30,
+                                       width=50,
+                                       command=window3.destroy)
+    exit_button_for_window_3.place(relx=0.5,rely=0.9,anchor=CENTER)
+
+# When the Radio Button for all data is pressed    
+    if rc_radio_button_var.get()=="all":
+        global w3_course_name
+        w3_course_name=rc_course_combobox.get().lower()
+        con1=sq.Connection(host="localhost",user="root",password="",database="coding_with_dost")
+        mycursor1=con1.cursor()
+
+        try:
+            sql=f"select Roll_no,Name,Father_Name,Date_of_Birth,Phone,Email,Religion from {w3_course_name}"
+            mycursor1.execute(sql)
+            sdata=mycursor1.fetchall()
+            data_text += "{:<8} {:<20} {:<20} {:<12} {:<12} {:<30} {:<20}\n".format("Roll No", "Name", "Father Name", "D O Birth", "Phone No", "Email Address", "Caste")
+            for s in sdata:
+                data_text+="{:<8} {:<20} {:<20} {:<12} {:<12} {:<30} {:<20}\n".format(s[0],s[1],s[2],s[3],s[4],s[5],s[6])
+            w3_result_textbox.insert("0.0",data_text)
+            w3_result_textbox.configure(state="disabled")
+        except:
+            data_text="Error: error occurs in getting all data check the code carefully"
+            w3_result_textbox.insert("0.0",data_text)
+            w3_result_textbox.configure(state="disabled")
+    
+    elif rc_radio_button_var.get()=="specified":
+        w3_course_name=rc_course_combobox.get().lower()
+        text_name=cb_name.get()
+        text_father_name=cb_father_name.get()
+        text_Phone_no=cb_phone_no.get()
+        text_Email=cb_email.get()
+        text_DOB=cb_date_of_birth.get()
+        text_religion=cb_religion.get()
+        text_caste=cb_Caste.get()
+        text_admission=cb_admission_date.get()
+        text_address=cb_address.get()
+        text_qualification=cb_father_qualification.get()
+        text_occupation=cb_father_occupation.get()
+        con=sq.Connection(host="localhost",user="root",password="",database="coding_with_dost")
+        mycursor2=con.cursor()
+        try:
+            slq2=f"select {text_name},{text_father_name},{text_DOB},{text_Email},{text_Phone_no},{text_occupation},{text_qualification},{text_religion},{text_caste},{text_admission},{text_address} from {w3_course_name}"
+            mycursor2.execute(slq2)
+            sdata=mycursor2.fetchall()
+            data_text += "{:<15} {:<18} {:<12} {:<35} {:<13} {:<10} {:<13} {:<10} {:<10} {:<10} {:<100}\n".format("Name", "Father Name", "D O Birth", "Email", "Phone No", "Occupation", "Qualification", "Religion", "Caste", "Admission", "Address")
+            for s in sdata:
+                data_text+="{:<15} {:<18} {:<12} {:<35} {:<13} {:<10} {:<13} {:<10} {:<10} {:<10} {:<100}".format(s[0],s[1],s[2],s[3],s[4],s[5],s[6],s[7],s[8],s[9],s[10])
+            w3_result_textbox.insert("0.0",data_text)
+            w3_result_textbox.configure(state="disabled")
+        except:
+            data_text= "ERROR: Error occurs in specified logic option"
+            w3_result_textbox.insert("0.0",data_text)
+            w3_result_textbox.configure(state="disabled")
+    else:
+        data_text=("Logic not woriking for Specified data")
+        w3_result_textbox.insert("0.0",data_text)
+        w3_result_textbox.configure(state="disabled")
+    window3.mainloop()
+#Creating a function that help us to delete a record
+#creating database for Admission form
+conn=sq.Connection(host="localhost",
+                   user="root",
+                   password="")
+mycursor=conn.cursor()
+try:
+    mycursor.execute("create database if not exists coding_with_dost")
+except:
+    print("database is not created...,Check database querry carefully once !")
+#Function 4 for deleting records from the database
+def delete_data():
+    window4=CTk()
+    window4.geometry("333x444")
+    window4.title("Coding With Dost")
+    window4._set_appearance_mode("dark")
+    #Function for deleting data from database
+    def remove_data():
+        conn1=sq.Connection(host="localhost",user="root",password="",database="coding_with_dost")
+        mycursor3=conn1.cursor()
+        course_name=w4_course_combobox.get().lower()
+        field_name=w4_field_combobox.get()
+        entry_data=w4_Entry_widget.get()
+        try:
+            delete_querry=f"delete from {course_name} where {field_name}=%s"
+            mycursor3.execute(delete_querry,entry_data)
+            conn1.commit()
+            response=ms.showinfo("Delete Data","Data is Successfully deleted from database")
+            window4.destroy()   
+        except:
+            ms.showinfo("Delete Data","Error occurs in delete querry.")
+            window4.destroy()
+
+    #Creating Header for window 4
+    w4_header_label=CTkLabel(master=window4,
+                             text="Delete data",
+                             text_color="#207AAE",
+                             font=("Bell MT",34),
+                             anchor=CENTER)
+    w4_header_label.place(relx=0.5,rely=0.1,anchor=CENTER)
+    #creating label for course combobox
+    w4_label=CTkLabel(master=window4,
+                      text="Choose Course",
+                      text_color="white",
+                      font=("Bell MT",22,"bold"),
+                      corner_radius=7)
+    w4_label.place(relx=0.01,rely=0.15)
+#Creating combobox for course detail
+    w4_course_combobox=CTkComboBox(master=window4,
+                               height=30,
+                               width=150,
+                               corner_radius=7,
+                               border_width=1,
+                               border_color="white",
+                               fg_color="black",
+                               dropdown_fg_color="#1F2427",
+                               dropdown_text_color="white",
+                               font=("Arial",17),
+                               button_color="skyblue",
+                               state="readonly",
+                               button_hover_color="green",
+                               dropdown_hover_color="#7E8AFE",
+                               values=["BCA","BBA","B_TECH","M_TECH","BSc","NB","BA","LLB","MLB"])
+    w4_course_combobox.set("BCA")
+    w4_course_combobox.place(relx=0.5,rely=0.25,anchor=CENTER)
+#Creating label for field combobox
+    w4_label2=CTkLabel(master=window4,
+                       text="Select the field on the basis you want to delete data",
+                       text_color="white",
+                       font=("Bell MT",22,"bold"),
+                       wraplength=300)
+    w4_label2.place(relx=0.1,rely=0.33)
+    #Creating combobox for field combobox
+    w4_field_combobox=CTkComboBox(master=window4,
+                                  height=30,
+                                  width=150,
+                                  corner_radius=8,
+                                  border_color="white",
+                                  border_width=1,
+                                  fg_color="black",
+                                  dropdown_fg_color="#1F2427",
+                                  dropdown_text_color="white",
+                                  state="readonly",
+                                  button_hover_color="green",
+                                  dropdown_hover_color="#7E8AFE",
+                                  values=["Roll_no","Name","Date_of_Birth","Father_Name","Father_Occupation","Phone","Email","Religion","Caste"])
+    w4_field_combobox.set("Roll_no")
+    w4_field_combobox.place(relx=0.5,rely=0.5,anchor=CENTER)
+    #Creating label for entry widget
+    w4_label3=CTkLabel(master=window4,
+                       text="Enter the select field data here",
+                       text_color="white",
+                       font=("Bell MT",22))
+    w4_label3.place(relx=0.1,rely=0.57)
+    #Creating entry  widget for getting data from user
+    w4_Entry_widget=CTkEntry(master=window4,
+                             height=30,
+                             width=150,
+                             border_color="white",
+                             border_width=2,
+                             corner_radius=8,
+                             placeholder_text="Enter the Data ",
+                             text_color="white",
+                             placeholder_text_color="white",
+                             font=("Bell MT",23))
+    w4_Entry_widget.place(relx=0.5,rely=0.7,anchor=CENTER)
+    #Creating Button for executing the delete querry
+    w4_delete_button=CTkButton(master=window4,
+                               text="Delete Data",
+                               text_color="white",
+                               font=("Bell MT",33),
+                               hover_color="green",
+                               command=remove_data)
+    w4_delete_button.place(relx=0.5,rely=0.85,anchor=CENTER)
+    
+    window4.mainloop()
+
+#Fuction 5 for searching data from the database
+def search_data():
+    window5=CTk()
+    window5.geometry("888x555")
+    window5.resizable(False,False)
+    window5.title("Coding With Dost")
+    #creating function for executing searching querry
+    def Search_data_cmd():
+        if len(w5_entry_widget.get())>=1:
+            data=""
+            text1_course_name=w5_course_combobox.get().lower()
+            text1_field_name=w5_field_combobox.get()
+            text1_entry_widget=w5_entry_widget.get()
+            connn=sq.Connection(host="localhost",user="root",password="",database="coding_with_dost")
+            mycu=connn.cursor()
+            try:
+                search_querry=f"select * from {text1_course_name} where {text1_field_name} like '%"+text1_entry_widget+"%' "
+                mycu.execute(search_querry)
+                sdata=mycu.fetchall()
+                data+= ("{:<7} {:<30} {:<14} {:<40}\n".format("Roll No","Name","Phone No","E-mail"))
+                for result in sdata:
+                    data+="{:<10} {:<30} {:<14} {:<40}\n".format(result[0],result[1],result[6],result[7])
+                result_textbox.insert("0.0",data)
+                result_textbox.configure(state="disabled")
+            except:
+                ms.showinfo("Error","Error occuring in seaching querry")
+
+        else:
+            ms.showinfo("Error:","Please fill the data in the databox")
+
+    #creating header label for window 5
+    w5_header=CTkLabel(master=window5,
+                       text="Search Data",
+                       text_color="white",
+                       font=("Bell MT",40))
+    w5_header.place(relx=0.5,rely=0.04,anchor=CENTER)
+    #Selecting course Label
+    w5_course_label=CTkLabel(master=window5,
+                             text="Select course",
+                             text_color="white",
+                             font=('Bell MT',22))
+    w5_course_label.place(relx=0.07,rely=0.08)
+    #Course combobox for selecting Course
+    w5_course_combobox=CTkComboBox(master=window5,
+                               height=30,
+                               width=150,
+                               corner_radius=7,
+                               border_width=1,
+                               border_color="white",
+                               fg_color="black",
+                               dropdown_fg_color="#1F2427",
+                               dropdown_text_color="white",
+                               font=("Arial",17),
+                               button_color="skyblue",
+                               state="readonly",
+                               button_hover_color="green",
+                               dropdown_hover_color="#7E8AFE",
+                               values=["BCA","BBA","B_TECH","M_TECH","BSc","NB","BA","LLB","MLB"])
+    w5_course_combobox.set("BCA")
+    w5_course_combobox.place(relx=0.07,rely=0.16)
+
+    # Creating label for field selection
+    w5_field_label=CTkLabel(master=window5,
+                            text="Select field",
+                            text_color="white",
+                            font=("Bell MT",22))
+    w5_field_label.place(relx=0.25,rely=0.08)
+    # Creating field combobx for field selection
+    w5_field_combobox=CTkComboBox(master=window5,
+                                  height=30,
+                                  width=150,
+                                  corner_radius=8,
+                                  border_color="white",
+                                  border_width=1,
+                                  fg_color="black",
+                                  dropdown_fg_color="#1F2427",
+                                  dropdown_text_color="white",
+                                  state="readonly",
+                                  button_hover_color="green",
+                                  dropdown_hover_color="#7E8AFE",
+                                  values=["Roll_no","Name","Date_of_Birth","Father_Name","Father_Occupation","Phone","Email","Religion","Caste"])
+    w5_field_combobox.set("Roll_no")
+    w5_field_combobox.place(relx=0.25,rely=0.16)
+    #creating entry widget for taking data
+    w5_entry_widget=CTkEntry(master=window5,
+                             height=40,
+                             width=300,
+                             fg_color="black",
+                             font=("Bell MT",19),
+                             text_color="white",
+                             placeholder_text="Enter data here",
+                             border_color="white",
+                             border_width=1,
+                             corner_radius=9)
+    w5_entry_widget.place(relx=0.08,rely=0.25)
+    #Creating Button for executing the search querry
+    w5_search_button=CTkButton(master=window5,
+                               height=40,
+                               width=50,
+                               text="Search",
+                               text_color="white",
+                               hover_color="green",
+                               font=("Bell MT",22),
+                               corner_radius=8,
+                               command=Search_data_cmd)
+    w5_search_button.place(relx=0.45,rely=0.25)
+
+    #Creating textbox for representing the searched data
+    result_textbox=CTkTextbox(master=window5,
+                              height=300,
+                              width=850,
+                              corner_radius=9,
+                              border_width=1,
+                              border_color="white",
+                              fg_color="black",
+                              text_color="white",
+                              scrollbar_button_color="white",
+                              scrollbar_button_hover_color="skyblue",
+                              font=("Times New Romans",17),
+                              activate_scrollbars=True)
+    result_textbox.place(relx=0.5,rely=0.65,anchor=CENTER)
+
+    window5.mainloop()
+
+# Header of Main Window
+header_label=CTkLabel(app,
+                      height=50,
+                      width=300,
+                      text="Coding With Dost",
+                      text_color="White",
+                      anchor=CENTER,
+                      font=("Times New Roman",65),
+                      )
+header_label.place(relx=0.5,rely=0.07,anchor=CENTER)
+# function 1 Button
+course_button=CTkButton(master=app,
+                        height=50,
+                        width=150,
+                        text="Course",
+                        corner_radius=9,
+                        hover_color="green",
+                        font=("Bell MT",20),
+                        command=show_course)
+course_button.place(relx=0.04,rely=0.22,anchor=NW)
+# function 2 Button
+course_button=CTkButton(master=app,
+                        height=50,
+                        width=150,
+                        text="New Admission",
+                        corner_radius=9,
+                        hover_color="green",
+                        font=("Bell MT",20),
+                        command=new_addmission)
+course_button.place(relx=0.04,rely=0.33,anchor=NW)
+# function 4 Button
+delete_button=CTkButton(master=app,
+                        height=50,
+                        width=150,
+                        text="delete data",
+                        font=("Bell MT",20),
+                        hover_color="green",
+                        command=delete_data)
+delete_button.place(relx=0.04,rely=0.44,anchor=NW)
+
+# Creating button for searching the data from database
+search_button=CTkButton(master=app,
+                        height=50,
+                        width=150,
+                        text="Search Data",
+                        font=("Bell MT",20),
+                        command=search_data)
+search_button.place(relx=0.04,rely=0.55)
+#creating frame for record area in the main window
+record_view=CTkFrame(master=app,
+                     width=600,
+                     height=450,
+                     corner_radius=7,
+                     border_width=2,
+                     border_color="white",
+                     bg_color="#0B1824",
+                     fg_color="#0B1824")
+record_view.place(relx=0.6,rely=0.6,anchor=CENTER)
+
+#Record section header
+record_header=CTkLabel(master=record_view,
+                       height=30,
+                       width=150,
+                       text="Record Area",
+                       text_color="white",
+                       font=("Times New Romans",30,"italic"),
+                       anchor=CENTER)
+record_header.place(relx=0.5,rely=0.1,anchor=CENTER)
+
+rc_course=CTkLabel(master=record_view,
+                   text="Course:",
+                   text_color="white",
+                   font=("Times New Romans",18))
+rc_course.place(relx=0.07,rely=0.2)
+
+rc_course_combobox=CTkComboBox(master=record_view,
+                               height=30,
+                               width=150,
+                               corner_radius=7,
+                               border_width=1,
+                               border_color="white",
+                               fg_color="black",
+                               dropdown_fg_color="#1F2427",
+                               dropdown_text_color="white",
+                               font=("Arial",17),
+                               button_color="skyblue",
+                               state="readonly",
+                               button_hover_color="green",
+                               dropdown_hover_color="#7E8AFE",
+                               values=["BCA","BBA","B_TECH","M_TECH","BSc","NB","BA","LLB","MLB"])
+rc_course_combobox.set("BCA")
+rc_course_combobox.place(relx=0.37,rely=0.22,anchor=CENTER)
+# Updating screen when user switch between two options
+def update_screen(*args):
+    global cb_father_occupation,cb_father_qualification,cb_address,cb_admission_date,cb_Caste,cb_religion,cb_date_of_birth,cb_email,cb_phone_no,cb_father_name,specified_option_label,cb_name
+    if rc_radio_button_var.get()=="specified":
+        #Updated screen Label
+        specified_option_label=CTkLabel(master=record_view,
+                                        text="Which fields do you need",
+                                        text_color="white",
+                                        height=30,
+                                        width=150,
+                                        font=("Times New Romans",22,"bold"))
+        specified_option_label.place(relx=0.1,rely=0.4)
+#1      #Checkbox for Name
+        cb_name=CTkCheckBox(master=record_view,
+                    height=30,
+                    width=30,
+                    onvalue="Name",
+                    offvalue="Nothing",
+                    corner_radius=7,
+                    border_width=2,
+                    border_color="white",
+                    fg_color="green",
+                    hover_color="green",
+                    text="Name",
+                    text_color="white")
+        cb_name.place(relx=0.1,rely=0.5)
+#2       #Checkbox for Father Name
+        cb_father_name=CTkCheckBox(master=record_view,
+                    height=30,
+                    width=30,
+                    onvalue="Father_Name",
+                    offvalue="Nothing",
+                    corner_radius=7,
+                    border_width=2,
+                    border_color="white",
+                    fg_color="green",
+                    hover_color="green",
+                    text="Father Name",
+                    text_color="white")
+        cb_father_name.place(relx=0.1,rely=0.58)
+#3      #Checkbox for Phone No:
+        cb_phone_no=CTkCheckBox(master=record_view,
+                    height=30,
+                    width=30,
+                    onvalue="Phone",
+                    offvalue="Nothing",
+                    corner_radius=7,
+                    border_width=2,
+                    border_color="white",
+                    fg_color="green",
+                    hover_color="green",
+                    text="Phone No:",
+                    text_color="white")
+        cb_phone_no.place(relx=0.1,rely=0.66)
+#4      #Checkbox for E-mail
+        cb_email=CTkCheckBox(master=record_view,
+                    height=30,
+                    width=30,
+                    onvalue="Email",
+                    offvalue="Nothing",
+                    corner_radius=7,
+                    border_width=2,
+                    border_color="white",
+                    fg_color="green",
+                    hover_color="green",
+                    text="E-mail",
+                    text_color="white")
+        cb_email.place(relx=0.1,rely=0.74)
+#5      #Checkbox for DOB
+        cb_date_of_birth=CTkCheckBox(master=record_view,
+                    height=30,
+                    width=30,
+                    onvalue="Date_of_Birth",
+                    offvalue="Nothing",
+                    corner_radius=7,
+                    border_width=2,
+                    border_color="white",
+                    fg_color="green",
+                    hover_color="green",
+                    text="Date of Birth",
+                    text_color="white")
+        cb_date_of_birth.place(relx=0.4,rely=0.5)
+#6      #Checkbox for Religion
+        cb_religion=CTkCheckBox(master=record_view,
+                                height=30,
+                                width=30,
+                                text="Religion",
+                                onvalue="Religion",
+                                offvalue="Nothing",
+                                corner_radius=7,
+                                border_width=2,
+                                fg_color="green",
+                                hover_color="green",
+                                text_color="white",
+                                border_color="white")
+        cb_religion.place(relx=0.4,rely=0.58)
+#7      #Checkbox for Caste
+        cb_Caste=CTkCheckBox(master=record_view,
+                             height=30,
+                             width=30,
+                             text="Caste",
+                             text_color="white",
+                             onvalue="Caste",
+                             offvalue="Nothing",
+                             corner_radius=7,
+                             hover_color="green",
+                             border_width=2,
+                             border_color="white",
+                             fg_color="green")
+        cb_Caste.place(relx=0.4,rely=0.66)
+#8      #Date of Admission
+        cb_admission_date=CTkCheckBox(master=record_view,
+                                      height=30,
+                                      width=30,
+                                      text="Date of Admission",
+                                      text_color="white",
+                                      onvalue="Date",
+                                      offvalue="Nothing",
+                                      border_width=2,
+                                      border_color="white",
+                                      hover_color="green",
+                                      corner_radius=7,
+                                      fg_color="green") 
+        cb_admission_date.place(relx=0.4,rely=0.74)
+#9      #Checkbox for Address
+        cb_address=CTkCheckBox(master=record_view,
+                               width=30,
+                               height=30,
+                               text="Address",
+                               text_color="white",
+                               onvalue="Address",
+                               offvalue="Nothing",
+                               corner_radius=7,
+                               border_width=2,
+                               border_color="white",
+                               hover_color="green",
+                               fg_color="green")
+        cb_address.place(relx=0.7,rely=0.5)
+#10     Checkbox for Father Qualification
+        cb_father_qualification=CTkCheckBox(master=record_view,
+                               width=30,
+                               height=30,
+                               text="Father Qualification",
+                               text_color="white",
+                               onvalue="Father_Qualification",
+                               offvalue="Nothing",
+                               corner_radius=7,
+                               border_width=2,
+                               border_color="white",
+                               hover_color="green",
+                               fg_color="green")
+        cb_father_qualification.place(relx=0.7,rely=0.58)
+#11     Checkbox for Father Occupation
+        cb_father_occupation=CTkCheckBox(master=record_view,
+                               width=30,
+                               height=30,
+                               text="Father Occupation",
+                               text_color="white",
+                               onvalue="Father_Occupation",
+                               offvalue="Nothing",
+                               corner_radius=7,
+                               border_width=2,
+                               border_color="white",
+                               hover_color="green",
+                               fg_color="green")
+        cb_father_occupation.place(relx=0.7,rely=0.66)
+    # Destroying the all elements when specified option is not selected
+    else:
+        cb_name.destroy()
+        specified_option_label.destroy()
+        cb_father_name.destroy()
+        cb_phone_no.destroy()
+        cb_email.destroy()
+        cb_date_of_birth.destroy()
+        cb_religion.destroy()
+        cb_Caste.destroy()
+        cb_admission_date.destroy()
+        cb_address.destroy()
+        cb_father_qualification.destroy()
+        cb_father_occupation.destroy()
+
+#creating options when specified button is pressed
+# Radio button for two option
+rc_radio_button_var=StringVar(value="all")
+# for all Button option
+rc_rb_all=CTkRadioButton(master=record_view,
+                               width=100,
+                               height=30,
+                               border_color="white",
+                               border_width_checked=12,
+                               border_width_unchecked=2,
+                               hover_color="green",
+                               corner_radius=20,
+                               text="All",
+                               text_color="white",
+                               value="all",
+                               font=("Arial",19),
+                               variable=rc_radio_button_var)
+rc_rb_all.place(relx=0.53,rely=0.19)
+
+# For specified button
+rc_rb_specified=CTkRadioButton(master=record_view,
+                               width=100,
+                               height=30,
+                               border_color="white",
+                               border_width_checked=12,
+                               border_width_unchecked=2,
+                               hover_color="green",
+                               corner_radius=20,
+                               text="Specified",
+                               variable=rc_radio_button_var,
+                               text_color="white",
+                               value="specified",
+                               font=("Arial",19))
+rc_rb_specified.place(relx=0.65,rely=0.19)
+rc_radio_button_var.trace('w',update_screen)
+
+rc_view_button=CTkButton(master=record_view,
+                         text="View",
+                         text_color="white",
+                         font=("New Times Romans",20),
+                         corner_radius=8,
+                         command=show_record)
+rc_view_button.place(relx=0.5,rely=0.9,anchor=CENTER)
+app.mainloop()
