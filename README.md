@@ -9,7 +9,7 @@
 
 ## 🌌 About Me  
 
-Hi, I'm *Raju, a **BCA student* passionate about creating innovative GUI applications and exploring Machine Learning.  
+Hi, I'm *Raju*, a **BCA student** passionate about creating innovative GUI applications and exploring Machine Learning.  
 Currently, I'm diving deep into *NumPy* and learning *Machine Learning* to build intelligent solutions.  
 My goal is to contribute impactful projects and grow in the tech world.
 
@@ -19,10 +19,12 @@ My goal is to contribute impactful projects and grow in the tech world.
 
 - *Programming Languages:*  
   ![Python](https://img.shields.io/badge/-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
-  ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+  ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)  
+  ![C](https://img.shields.io/badge/-C-A8B9CC?style=for-the-badge&logo=c&logoColor=white)
 
 - *Frameworks and Tools:*  
   ![Customtkinter](https://img.shields.io/badge/-Customtkinter-00ADB5?style=for-the-badge&logo=python&logoColor=white)  
+  ![NumPy](https://img.shields.io/badge/-NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)  
   ![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
   ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
@@ -49,8 +51,8 @@ My goal is to contribute impactful projects and grow in the tech world.
 ## 📊 GitHub Stats  
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Raju&show_icons=true&theme=dark" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Raju-07&theme=dark" alt="GitHub Streak" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=dark" alt="GitHub Stats" width="48%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=your-github-username&theme=dark" alt="GitHub Streak" width="48%" />
 </p>
 
 ---
@@ -61,7 +63,7 @@ My goal is to contribute impactful projects and grow in the tech world.
   <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank">
     <img src="https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
-  <a href="mailto:your-rajuyadav782760@gmail.com">
+  <a href="mailto:your-email@gmail.com">
     <img src="https://img.shields.io/badge/-Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
 </p>
