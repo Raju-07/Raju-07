@@ -1,63 +1,58 @@
-<div align="center">
-  <h1 style="color:#00ADB5;">💻 Raju's GitHub Profile</h1>
-  <p style="color:#EEEEEE; font-size:18px;">
-    Passionate Developer | Machine Learning Enthusiast | GUI Expert
-  </p>
-</div>
+---
+
+## 🌌 About Me
+
+Hello! I'm **Raju Yadav**, a final‑year **BCA student** who loves turning ideas into code that solves real‑world problems.
+
+* 🔭 **Current Focus:** Sharpening my data science toolkit — I’ve **completed NumPy** and I’m now diving deep into **Pandas**.
+* 🎯 **Career Goal:** Become a full‑stack **Machine Learning Engineer**, building smart applications that automate boring tasks and deliver insights.
+* 📺 **Content Creator:** I teach Python basics and projects on my YouTube channel **"Coding with Dost"**.
 
 ---
 
-## 🌌 About Me  
+## 🛠 Skills and Tools
 
-Hi, I'm *Raju*, a **BCA student** passionate about creating innovative GUI applications and exploring Machine Learning.  
-Currently, I'm diving deep into *NumPy* and learning *Machine Learning* to build intelligent solutions.  
-My goal is to contribute impactful projects and grow in the tech world.
+### Programming Languages  
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
+![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=mysql&logoColor=white)  
+![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=white)
+
+### Libraries & Frameworks  
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)  
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)  
+![CustomTkinter](https://img.shields.io/badge/CustomTkinter-00ADB5?style=for-the-badge&logo=python&logoColor=white)  
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)  
+![OpenPyXL](https://img.shields.io/badge/OpenPyXL-28546E?style=for-the-badge&logo=excel&logoColor=white)
+
+### Tools & Platforms  
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)  
+![VS Code](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)  
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)  
+![OBS Studio](https://img.shields.io/badge/OBS_Studio-302E31?style=for-the-badge&logo=obsstudio&logoColor=white)
+
+---
+## 🚀 Projects
+
+| Project                                                                                           | Description                                                                                                                      | Tech Stack                          |
+| ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **[Student Result Automation System](https://github.com/your-profile/student-result-automation)** | Automates fetching university results with Selenium, formats them in Excel with `openpyxl`, and resumes smoothly after failures. | Python, Selenium, openpyxl          |
+| **[Image Viewer](https://github.com/raju-07/Image-Viewer)**                                  | Browse and manage images with an intuitive CustomTkinter GUI.                                                                    | Python, Customtkinter               |
+| **[Login Window](https://github.com/raju-07/Login-Window)**                                  | Secure GUI login form featuring password hide/show, validation, and stylish design.                                              | Python, Customtkinter               |
+| **[Weather App](https://github.com/raju-07/Weather-Data-App)**                               | Displays real‑time weather data from an API in an interactive GUI.                                                               | Python, Requests/API, Customtkinter |
+| **[Notepad Clone](https://github.com/raju-07/Notepad-Clone)**                                | Full‑featured text editor re‑created with Python and CustomTkinter.                                                              | Python, Customtkinter               |
+---
+
+## 🎯 Future Goals
+
+* Master **Pandas**, **Matplotlib/Seaborn**, and **scikit‑learn**.
+* Start contributing to **open‑source ML repositories**.
+* Build end‑to‑end projects deploying ML models with **Flask/FastAPI**.
+* Create engaging content to help beginners learn practical Python & ML.
 
 ---
 
-## 🛠 Skills and Tools  
-
-- *Programming Languages:*  
-  ![Python](https://img.shields.io/badge/-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
-  ![SQL](https://img.shields.io/badge/-SQL-4479A1?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)  
-  ![C](https://img.shields.io/badge/-C-A8B9CC?style=for-the-badge&logo=c&logoColor=white)
-
-- *Frameworks and Tools:*  
-  ![Customtkinter](https://img.shields.io/badge/-Customtkinter-00ADB5?style=for-the-badge&logo=python&logoColor=white)  
-  ![NumPy](https://img.shields.io/badge/-NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)  
-  ![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
-  ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-
----
-
-## 🚀 Projects  
-
-| *Project*                | *Description*                                                                                                                                         | *Tech Stack*      |
-|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| *[Image Viewer](https://github.com/your-profile/Image-Viewer)*  | A GUI application to view and manage images effortlessly with a stylish interface.                                                             | Python, Customtkinter |
-| *[Login Window](https://github.com/your-profile/Login-Window)*  | A user authentication system with secure login, password hiding/showing, and an elegant interface.                                           | Python, Customtkinter |
-| *[Weather App](https://github.com/your-profile/Weather-Data-App)* | A weather application that fetches real-time weather data using APIs and displays it interactively.                                          | Python, API          |
-
----
-
-## 🎯 Future Goals  
-
-- *Enhance* my expertise in *Deep Learning* and *AI development*.  
-- Collaborate on *open-source projects* and contribute to the developer community.  
-- Build advanced, user-friendly applications that solve real-world problems.
-
----
-
-## 📊 GitHub Stats  
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=dark" alt="GitHub Stats" width="48%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=your-github-username&theme=dark" alt="GitHub Streak" width="48%" />
-</p>
-
----
-
-## 📫 Connect with Me  
+## 📫 Connect with Me
 
 <p align="center">
   <a href="https://www.linkedin.com/in/raju-yadav-28624a28a" target="_blank">
@@ -66,6 +61,12 @@ My goal is to contribute impactful projects and grow in the tech world.
   <a href="mailto:rajuyadav782760@gmail.com">
     <img src="https://img.shields.io/badge/-Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
+  <a href="https://github.com/your-github-username" target="_blank">
+    <img src="https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <a href="https://www.youtube.com/@CodingWithDost" target="_blank">
+    <img src="https://img.shields.io/badge/-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+  </a>
 </p>
 
 ---
@@ -73,3 +74,4 @@ My goal is to contribute impactful projects and grow in the tech world.
 <div align="center">
   <h3 style="color:#EEEEEE;">"Stay Curious, Keep Building!"</h3>
 </div>
+
