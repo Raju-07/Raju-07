@@ -61,7 +61,7 @@ Hello! I'm **Raju Yadav**, a final‑year **BCA student** who loves turning idea
   <a href="mailto:rajuyadav782760@gmail.com">
     <img src="https://img.shields.io/badge/-Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
-  <a href="https://github.com/your-github-username" target="_blank">
+  <a href="https://github.com/raju-07 target="_blank">
     <img src="https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
   </a>
   <a href="https://www.youtube.com/@CodingWithDost" target="_blank">
