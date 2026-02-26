@@ -6,7 +6,6 @@ Hello! I'm **Raju Yadav**, a final‑year **BCA student** who loves turning idea
 
 * 🔭 **Current Focus:** Sharpening my data science toolkit — I’ve **completed NumPy** and I’m now diving deep into **Pandas**.
 * 🎯 **Career Goal:** Become a full‑stack **Machine Learning Engineer**, building smart applications that automate boring tasks and deliver insights.
-* 📺 **Content Creator:** I teach Python basics and projects on my YouTube channel **"Coding with Dost"**.
 
 ---
 
