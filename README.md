@@ -26,6 +26,8 @@ I am a recent **Bachelor of Computer Applications (BCA)** graduate specializing 
 
 ### Frameworks & Libraries  
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)  
+![FastAPI](https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white)  
+![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)  
 ![CustomTkinter](https://img.shields.io/badge/CustomTkinter-00ADB5?style=for-the-badge&logo=python&logoColor=white)  
 ![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)  
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)  
@@ -45,11 +47,11 @@ I am a recent **Bachelor of Computer Applications (BCA)** graduate specializing 
 
 | Project | Description | Tech Stack |
 | :--- | :--- | :--- |
-| **[ResultSync](https://github.com/raju-07/ResultSync)** | A web automation tool that extracts university result data using Selenium, organizes it seamlessly into Excel via OpenPyXL, and features automated crash-recovery logic. | Python, Selenium, OpenPyXL |
+| **[ResultSync](https://github.com/raju-07/ResultSync)** | A web automation tool that extracts university result data using Selenium, organizes it seamlessly into Excel via OpenPyXL, and features automated crash-recovery logic. | Python, Selenium, OpenPyXL, CustomTkinter,Python |
+| **[BioStack](https://github.com/raju-07/BioStack)** | A creator-first platform for building and sharing dynamic professional profiles through a single shareable link. Replaces static resumes with always-updated profiles fully customizable and accessible from anywhere. | Django, Python, HTML, CSS |
+| **[LibStream](https://github.com/raju-07/LibStream)** | A comprehensive library management and streaming application built with Python for handling digital library operations and content delivery. | Python, FastAPI, Postgresql |
+| **[SecureNotes](https://github.com/raju-07/SecureNotes)** | A secure note-taking application with encryption and data protection features for safe storage and management of confidential information. | React-Native, Canva, Cryptography |
 | **[Image Viewer](https://github.com/raju-07/Image-Viewer)** | A sleek, modern desktop application to browse and manage local media with an intuitive CustomTkinter user interface. | Python, CustomTkinter |
-| **[Weather App](https://github.com/raju-07/Weather-Data-App)** | An interactive GUI application fetching and parsing real-time meteorological data via live API integrations. | Python, Requests API, CustomTkinter |
-| **[Notepad Clone](https://github.com/raju-07/Notepad-Clone)** | A fully-featured text editing software clone rebuilt to practice file handling, text operations, and system-level GUI design. | Python, CustomTkinter |
-| **[Login Window](https://github.com/raju-07/Login-Window)** | A secure, modern UI login panel featuring built-in credential validation and active password visibility toggles. | Python, CustomTkinter |
 
 ---
 
