@@ -102,7 +102,7 @@ I'm actively looking for opportunities as a:
 
 I'm also open to **freelance backend development and automation projects**.
 
-My long-term goal is to continue growing from backend engineering into **cloud-native and machine learning systems**.
+My goal is to continue growing as a **backend engineer** by building **scalable, reliable, and production-ready systems**.
 
 ---
 
