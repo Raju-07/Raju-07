@@ -16,20 +16,20 @@ I work primarily with **Python, FastAPI, Django, PostgreSQL, MySQL, Selenium, an
 
 I'm currently expanding my backend and cloud engineering skills through **Docker and AWS**, working with services such as **EC2 and S3**.
 
-### 🚀 What I Build
+### What I Build
 
-* 🔹 RESTful APIs and backend services with **FastAPI & Django**
-* 🔐 Authentication and authorization using **JWT**
-* ⚡ Asynchronous backend applications with Python
-* 🧪 Automated testing with **pytest**
-* 🗄️ Database-driven applications using **PostgreSQL & MySQL**
-* 🤖 Web automation and data extraction using **Selenium**
-* ☁️ Application deployment using **Render & AWS**
-* 🐳 Learning containerized application deployment with **Docker**
+* RESTful APIs and backend services with **FastAPI & Django**
+* Authentication and authorization using **JWT**
+* Asynchronous backend applications with Python
+* Automated testing with **pytest**
+* Database-driven applications using **PostgreSQL & MySQL**
+* Web automation and data extraction using **Selenium**
+* Application deployment using **Render & AWS**
+* Learning containerized application deployment with **Docker**
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Languages
 
@@ -69,7 +69,7 @@ I'm currently expanding my backend and cloud engineering skills through **Docker
 
 ---
 
-## 🚀 Featured Projects
+## Featured Projects
 
 | Project                                                     | Description                                                                                                                                                           | Tech Stack                                |
 | :---------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- |
@@ -81,20 +81,20 @@ I'm currently expanding my backend and cloud engineering skills through **Docker
 
 ---
 
-## 📈 Current Focus
+## Current Focus
 
 I'm currently focused on strengthening my skills in:
 
-* 🐳 **Docker & containerized backend applications**
-* ☁️ **AWS cloud services — EC2, S3 and deployment workflows**
-* 🧪 **Backend testing with pytest**
-* ⚡ **Advanced FastAPI development and asynchronous programming**
-* 🔐 **API security, authentication and authorization**
-* 🏗️ **Backend architecture and scalable application design**
+* **Docker & containerized backend applications**
+* **AWS cloud services — EC2, S3 and deployment workflows**
+* **Backend testing with pytest**
+* **Advanced FastAPI development and asynchronous programming**
+* **API security, authentication and authorization**
+* **Backend architecture and scalable application design**
 
 ---
 
-## 🎯 Career Direction
+## Career Direction
 
 I'm actively looking for opportunities as a:
 
@@ -106,7 +106,7 @@ My goal is to continue growing as a **backend engineer** by building **scalable,
 
 ---
 
-## 📫 Connect With Me
+## Connect With Me
 
 <p align="center">
   <a href="https://www.linkedin.com/in/raju-yadav-28624a28a" target="_blank">
